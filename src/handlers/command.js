@@ -3,7 +3,6 @@ import Bronas from '../services/bronas';
 import Martinez from '../services/martinez';
 import Boegivar from '../services/boegivar';
 import Tourettes from '../services/tourettes';
-//import statistical from '../services/statistical';
 
 const bone = new Bone();
 const bronas = new Bronas();
@@ -12,12 +11,9 @@ const boegivar = new Boegivar();
 const tourettes = new Tourettes();
 
 export default class Command {
-//  getStats(message, bot) {
-//    bot.sendMessage(message.chat, '??? is the magic number');
-//  }
 
   getGreeting(message, bot) {
-    const reply = 'Hi, there! It is nice to see you here, ' + message.user.firstName + '! I\'m Qw4z1Bot, but you can call me Boegivar.';
+    const reply = 'Hallå eller! Jävligt skôj å se dig, ' + message.user.firstName + '! Jag är Qw4z1Bot, men kalla mig Boegivar.';
     bot.sendMessage(message.chat, reply);
   }
 
@@ -37,7 +33,7 @@ export default class Command {
   }
 
   getHelp(message, bot) {
-    bot.sendMessage(message.chat, 'You can call me Boegivar.');
+    bot.sendMessage(message.chat, 'Kalla mig Boegivar är du bôrdi\'!');
   }
 
   getBoegivar(message, bot) {
@@ -47,7 +43,7 @@ export default class Command {
 
   getFucker(message, bot) {
     console.log('get fucker');
-    bot.sendMessage(message.chat, 'Hey faggot! Yes, you... Go fuck yourself.');
+    bot.sendMessage(message.chat, 'Hallå där din knickedick! Tryck upp en sjöpall i stolgången din jävla dagslända!');
   }
 
   getTourettes(message, bot) {

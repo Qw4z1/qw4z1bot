@@ -28,9 +28,9 @@ export default class Messenger {
     console.log("Incoming message: " + msg.text);
     //format the message
     const message = new Message(Message.mapMessage(msg));
-    const text = message.text;
+    const text = message.text.toLowerCase();
     console.log("Parsed message: " + message.text);
-    
+
     //checking if asked "/start"
     if (inputParser.isAskingForGreeting(text)) {
       return handlers.command.getGreeting(message, this.bot);

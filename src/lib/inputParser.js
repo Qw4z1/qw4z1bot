@@ -1,9 +1,5 @@
 export default class InputParser {
 
-//  isAskingForStats(text) {
-//    const pattern = '/stats';
-//    return text.match(pattern);
-//  }
 
   isAskingForGreeting(text) {
     const pattern = '/start';
@@ -37,11 +33,11 @@ export default class InputParser {
 
   isAskingForRandom(text) {
     return [
-      '/Martinez',
-      '/Bronas',
-      '/Böne',
-    //  '/stats',
-      '/Boegivar'
+      '/Martines',
+      '/Brony',
+      '/bone',
+      '/Böner',
+      '/Bögivar'
     ].some(i => text.includes(i));
   }
 }
