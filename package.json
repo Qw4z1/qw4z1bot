@@ -1,0 +1,30 @@
+{
+  "name": "qw4z1bot",
+  "version": "1.0.0",
+  "description": "Teh fck",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d dist --presets es2015,stage-2",
+    "serve": "npm build && nodemon dist/index.js",
+    "test": "npm build && mocha --recursive --compilers js:babel-register"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.21.1",
+    "nodemon": "^1.9.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "6.10.4",
+    "babel-polyfill": "^6.0.16",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0",
+    "nodemon": "^1.9.2"
+  },
+  "author": "Qw4z1",
+  "license": "ISC"
+}
