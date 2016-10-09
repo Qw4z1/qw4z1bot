@@ -57,6 +57,8 @@ export default class Tourettes {
             {
               return true;
             }
+
+        // detta else var bara för att kunna köra test på tom inmatning, kom inte på hur det skulle kunna valideras annars. 
           else
           {
             return false;
