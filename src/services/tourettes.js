@@ -4,8 +4,6 @@ export default class Tourettes {
 
   sayTourettes(message)
     {
-      // const tourMessage = new Message.mapMessage(message);
-      // var inputTourettes = tourMessage.text;
       var inputTourettes = message.text;
       var tWordList =
         [
@@ -21,10 +19,22 @@ export default class Tourettes {
         ];
       var str = inputTourettes.substr(11, inputTourettes.length);
       var newString = "";
-      for (var i = 0; i < str.length; i++)
+
+      if (Tourettes.isValidText(message))
         {
-          newString += str[i] == ' ' && Tourettes.isTourettes() ? this.spewTourettes(tWordList) : str[i];
+          for (var i = 0; i < str.length; i++)
+            {
+              newString += str[i] == ' ' && Tourettes.isTourettes() ? this.spewTourettes(tWordList) : str[i];
+            }
         }
+      else
+        {
+          for (var i = 0; i < Tourettes.randFromTo(3, 10); i++)
+            {
+              newString += this.spewTourettes(tWordList);
+            }
+        }
+
       return newString;
     }
 
@@ -41,9 +51,20 @@ export default class Tourettes {
             }
         }
 
+    static isValidText(text)
+        {
+          if (text.length > 0 && text != ' ')
+            {
+              return true;
+            }
+          else
+          {
+            return false;
+          }
+        }
+
     spewTourettes(wordList)
         {
-
           var tWord = wordList[Tourettes.randFromTo(0, wordList.length-1)];
           return ' ' + tWord.toUpperCase() + '! ';
         }

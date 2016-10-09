@@ -16,6 +16,8 @@ describe("Random test", function() {
     it("Does nothing", function () {
         chai.expect(true).to.equal(true);
     });
+
+})
 */
 
-});
+;

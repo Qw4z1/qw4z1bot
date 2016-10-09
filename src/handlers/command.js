@@ -13,7 +13,7 @@ const tourettes = new Tourettes();
 export default class Command {
 
   getGreeting(message, bot) {
-    const reply = 'Hallå eller! Jävligt skôj å se dig, ' + message.user.firstName + '! Jag är Qw4z1Bot, men kalla mig Boegivar.';
+    const reply = 'Hallåå elle\'! Jävvlit skôj å se dig, ' + message.user.firstName + '! Jag é Qw4z1Bot, men kalla mig Boegivar.';
     bot.sendMessage(message.chat, reply);
   }
 
@@ -33,7 +33,7 @@ export default class Command {
   }
 
   getHelp(message, bot) {
-    bot.sendMessage(message.chat, 'Kalla mig Boegivar är du bôrdi\'!');
+    bot.sendMessage(message.chat, 'Kalla mig Boegivar é du bôdi\'!');
   }
 
   getBoegivar(message, bot) {
