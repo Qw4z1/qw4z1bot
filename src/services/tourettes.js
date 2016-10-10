@@ -20,7 +20,9 @@ export default class Tourettes {
           'kantarellsaft',
           'makrillsås',
           'bloody vaginal belch',
-          'feministdemonstration'          
+          'feministdemonstration',
+          'mr potatomun',
+          'fistelfisting'          
         ];
       var str = inputTourettes.substr(11, inputTourettes.length);
       var newString = "";
