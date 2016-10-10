@@ -20,7 +20,7 @@ export default class Tourettes {
       var str = inputTourettes.substr(11, inputTourettes.length);
       var newString = "";
 
-      if (Tourettes.isValidText(message))
+      if (Tourettes.isValidText(str))
         {
           for (var i = 0; i < str.length; i++)
             {
@@ -53,16 +53,7 @@ export default class Tourettes {
 
     static isValidText(testStr)
         {
-          if (testStr.length > 0 || testStr != ' ')
-            {
-              return true;
-            }
-
-        // detta else var bara för att kunna köra test på tom inmatning, kom inte på hur det skulle kunna valideras annars.
-          else
-          {
-            return false;
-          }
+          return testStr.length > 0 && testStr != ' ';
         }
 
     spewTourettes(wordList)
