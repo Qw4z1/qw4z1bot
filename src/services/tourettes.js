@@ -51,14 +51,14 @@ export default class Tourettes {
             }
         }
 
-    static isValidText(text)
+    static isValidText(testStr)
         {
-          if (text.length > 0 && text != ' ')
+          if (testStr.length > 0 && testStr != ' ')
             {
               return true;
             }
 
-        // detta else var bara för att kunna köra test på tom inmatning, kom inte på hur det skulle kunna valideras annars. 
+        // detta else var bara för att kunna köra test på tom inmatning, kom inte på hur det skulle kunna valideras annars.
           else
           {
             return false;
