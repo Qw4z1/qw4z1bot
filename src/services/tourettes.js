@@ -15,7 +15,12 @@ export default class Tourettes {
           'eskimåfitta',
           'slappbög',
           'analslick',
-          'passivist'
+          'passivist',
+          'rövpiss',
+          'kantarellsaft',
+          'makrillsås',
+          'bloody vaginal belch',
+          'feministdemonstration'          
         ];
       var str = inputTourettes.substr(11, inputTourettes.length);
       var newString = "";
