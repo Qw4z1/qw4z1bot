@@ -53,7 +53,7 @@ export default class Tourettes {
 
     static isValidText(testStr)
         {
-          if (testStr.length > 0 && testStr !== ' ')
+          if (testStr.length > 0 || testStr != ' ')
             {
               return true;
             }
