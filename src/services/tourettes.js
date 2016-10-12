@@ -22,25 +22,28 @@ export default class Tourettes {
           'bloody vaginal belch',
           'feministdemonstration',
           'mr potatomun',
-          'fistelfisting'          
+          'fistelfisting'
         ];
       var str = inputTourettes.substr(11, inputTourettes.length);
       var newString = "";
 
-      if (Tourettes.isValidText(str))
-        {
-          for (var i = 0; i < str.length; i++)
-            {
-              newString += str[i] == ' ' && Tourettes.isTourettes() ? this.spewTourettes(tWordList) : str[i];
-            }
-        }
-      else
-        {
-          for (var i = 0; i < Tourettes.randFromTo(3, 10); i++)
-            {
-              newString += this.spewTourettes(tWordList);
-            }
-        }
+        if (Tourettes.isNumeric(str))
+          {
+            newString = this.spewTourettes(tWordList, parseInt(str));
+          }
+        else if (Tourettes.isValidText(str))
+          {
+            newString = ' ';
+
+            for (var i = 0; i < str.length; i++)
+              {
+                newString += str[i] == ' ' && Tourettes.isTourettes() ? this.spewTourettes(tWordList, 1) : str[i];
+              }
+          }
+        else
+          {
+            newString = this.spewTourettes(tWordList, Tourettes.randFromTo(3, 10));
+          }
 
       return newString;
     }
@@ -63,9 +66,22 @@ export default class Tourettes {
           return testStr.length > 0 && testStr != ' ';
         }
 
-    spewTourettes(wordList)
+    static isNumeric(num)
         {
-          var tWord = wordList[Tourettes.randFromTo(0, wordList.length-1)];
-          return ' ' + tWord.toUpperCase() + '! ';
+          return !isNaN(num);
+        }
+
+    spewTourettes(wordList, numberOfIterations)
+        {
+          var tWord = '';
+          var newTString = '';
+
+          for (var i = 0; i < numberOfIterations; i++)
+            {
+              tWord = wordList[Tourettes.randFromTo(0, wordList.length-1)];
+              newTString += tWord.toUpperCase() + '! ';
+            }
+
+          return newTString;
         }
 }
