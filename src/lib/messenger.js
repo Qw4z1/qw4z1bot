@@ -62,9 +62,15 @@ export default class Messenger {
 
     //checking if spelled any command wrong
     if (inputParser.isAskingForRandom(text)) {
-      console.log('is asking for random');
+      console.log('Is asking for random');
       return handlers.command.getFucker(message, this.bot);
     }
+
+    //checking if asked for "/stats"
+    if (inputParser.isAskingForStats(text)) {
+      console.log('Is asking for /stats, ignoring');
+    }
+
     // default - send message with help
     return handlers.command.getHelp(message, this.bot);
   }

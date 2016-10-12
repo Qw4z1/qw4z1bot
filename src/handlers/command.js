@@ -33,7 +33,7 @@ export default class Command {
   }
 
   getHelp(message, bot) {
-    bot.sendMessage(message.chat, 'Kalla mig Boegivar é du bôdi\'!');
+    bot.sendMessage(message.chat, 'Kalla mig Boegivar é du bôdi\'!\nDet finns ett gäng kommandon att leka med:\n\n/böne\n/martinez\n/boegivar\n/tourettes\n\nSlå knock på dig själv, änna!');
   }
 
   getBoegivar(message, bot) {
