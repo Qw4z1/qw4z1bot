@@ -30,6 +30,11 @@ export default class InputParser {
     return text.includes(pattern);
   }
 
+  isAskingForStats(text) {
+    const pattern = '/stats';
+    return text.includes(pattern);
+  }
+
   isAskingForRandom(text) {
     return [
       '/Martines',
