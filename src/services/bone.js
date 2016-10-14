@@ -1,8 +1,5 @@
-export default class Bone {
-
-  constructor() {}
-
+export const bone = {
   sayBone() {
-      return "Bearman!";
-  }
-}
+    return 'Bearman!';
+  },
+};

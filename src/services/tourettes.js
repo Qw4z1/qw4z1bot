@@ -1,71 +1,62 @@
-export default class Tourettes {
+const profanities = [
+  'kuk',
+  'fitta',
+  'bullhora',
+  'hora',
+  'sagge',
+  'eskimåfitta',
+  'classes in JavaScript',
+  'slappbög',
+  'analslick',
+  'passivist',
+  'rövpiss',
+  'kantarellsaft',
+  'makrillsås',
+  'bloody vaginal belch',
+  'feministdemonstration',
+  'mr potatomun',
+  'fistelfisting',
+  'piss! piss out my ass!!'
+];
 
-  constructor() {}
-
-  sayTourettes(message)
-    {
-      var inputTourettes = message.text;
-      var tWordList =
-        [
-          'kuk',
-          'fitta',
-          'bullhora',
-          'hora',
-          'sagge',
-          'eskimåfitta',
-          'slappbög',
-          'analslick',
-          'passivist',
-          'rövpiss',
-          'kantarellsaft',
-          'makrillsås',
-          'bloody vaginal belch',
-          'feministdemonstration',
-          'mr potatomun',
-          'fistelfisting'          
-        ];
-      var str = inputTourettes.substr(11, inputTourettes.length);
-      var newString = "";
-
-      if (Tourettes.isValidText(str))
-        {
-          for (var i = 0; i < str.length; i++)
-            {
-              newString += str[i] == ' ' && Tourettes.isTourettes() ? this.spewTourettes(tWordList) : str[i];
-            }
-        }
-      else
-        {
-          for (var i = 0; i < Tourettes.randFromTo(3, 10); i++)
-            {
-              newString += this.spewTourettes(tWordList);
-            }
-        }
-
-      return newString;
-    }
-
-    static randFromTo(fromInt, toInt)
-        {
-          return Math.floor(Math.random() * (toInt - fromInt + 1) + fromInt);
-        }
-
-    static isTourettes()
-        {
-          if (Tourettes.randFromTo(1, 3) < 2)
-            {
-              return true;
-            }
-        }
-
-    static isValidText(testStr)
-        {
-          return testStr.length > 0 && testStr != ' ';
-        }
-
-    spewTourettes(wordList)
-        {
-          var tWord = wordList[Tourettes.randFromTo(0, wordList.length-1)];
-          return ' ' + tWord.toUpperCase() + '! ';
-        }
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function getRandomProfanity() {
+  const index = getRandomNumber(0, profanities.length - 1);
+  return profanities[index];
+}
+
+function isSupposedToTourette() {
+  return getRandomNumber(1, 3) < 2;
+}
+
+function maybeGetTourette(word) {
+  if (isSupposedToTourette()) {
+    return `${word} ${getRandomProfanity()}`;
+  }
+  return word;
+}
+
+function spewTourettes(inputWords = []) {
+  return inputWords
+    .map(maybeGetTourette)
+    .join(' ');
+}
+
+function hasNoProfanity(inputText, reply) {
+  const inputTextWordCount = inputText.split(' ').length;
+  const replyWordCount = reply.split(' ').length;
+  return inputTextWordCount === replyWordCount;
+}
+
+export const tourettes = {
+  sayTourettes(inputText = getRandomProfanity()) {
+    const reply = spewTourettes(inputText.split(' '));
+    if (hasNoProfanity(inputText, reply)) {
+      return `${reply} ${getRandomProfanity()}`;
+    }
+    return reply;
+  },
+};

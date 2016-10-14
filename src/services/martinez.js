@@ -1,8 +1,5 @@
-export default class Martinez {
-
-  constructor() {}
-
+export const martinez = {
   sayMartinez() {
-      return "Martinez!";
-  }
-}
+    return 'Martinez!';
+  },
+};

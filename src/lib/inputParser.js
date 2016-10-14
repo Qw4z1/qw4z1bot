@@ -1,6 +1,5 @@
 export default class InputParser {
 
-
   isAskingForGreeting(text) {
     const pattern = '/start';
     return text.includes(pattern)

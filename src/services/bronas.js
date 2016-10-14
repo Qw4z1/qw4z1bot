@@ -1,8 +1,5 @@
-export default class Bronas {
-
-  constructor() {}
-
+export const bronas = {
   sayBronas() {
-      return "Bronas!";
-  }
-}
+    return 'Bronas!';
+  },
+};
