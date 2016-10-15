@@ -2,7 +2,7 @@ import { bone } from '../services/bone';
 import { bronas } from '../services/bronas';
 import { martinez } from '../services/martinez';
 import { boegivar } from '../services/boegivar';
-import { tourettes } from '../services/tourettes';
+import { sayTourettes } from '../services/tourettes';
 
 export const commands = {
   getGreeting(message, bot) {
@@ -46,7 +46,7 @@ export const commands = {
   },
 
   getTourettes(message, bot) {
-    const reply = tourettes.sayTourettes(message.text);
+    const reply = sayTourettes(message.text);
     bot.sendMessage(message.chat, reply);
   },
 };

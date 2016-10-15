@@ -1,10 +1,10 @@
-import expect, { spyOn } from 'expect';
+import expect, { spyOn, restoreSpies } from 'expect';
 import { commands } from '../inputHandler';
 import { bone } from '../../services/bone';
 import { bronas } from '../../services/bronas';
 import { martinez } from '../../services/martinez';
 import { boegivar } from '../../services/boegivar';
-import { tourettes } from '../../services/tourettes';
+import * as tourettes  from '../../services/tourettes';
 
 describe('inputHandler commands', () => {
   const bot = {
@@ -18,7 +18,7 @@ describe('inputHandler commands', () => {
     botSpy = spyOn(bot, 'sendMessage');
   });
 
-  afterEach(() => expect.restoreSpies());
+  afterEach(() => restoreSpies());
 
   describe('getGreeting', () => {
     const msg = Object.assign({}, message, {

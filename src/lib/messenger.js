@@ -1,54 +1,47 @@
-import Message from './message';
-import InputParser from './inputParser';
+import messageFactory from './message';
+import * as inputParser from './inputParser';
 import { commands } from '../handlers/inputHandler';
 
-const inputParser = new InputParser();
+export default function messenger(bot) {
+  return {
+    listen() {
+      bot.on('text', this.handleText);
+      return Promise.resolve();
+    },
 
-export default class Messenger {
+    handleText(msg) {
+      const message = messageFactory(msg);
+      const text = message.text.toLowerCase();
 
-  constructor(bot) {
-    this.bot = bot;
-    this.handleText = this.handleText.bind(this);
-  }
+      if (inputParser.isAskingForGreeting(text)) {
+        return commands.getGreeting(message, bot);
+      }
 
-  listen() {
-    this.bot.on('text', this.handleText);
-    return Promise.resolve();
-  }
+      if (inputParser.isAskingForBone(text)) {
+        return commands.getBone(message, bot);
+      }
 
-  handleText(msg) {
-    const message = new Message(Message.mapMessage(msg));
-    const text = message.text.toLowerCase();
+      if (inputParser.isAskingForMartinez(text)) {
+        return commands.getMartinez(message, bot);
+      }
 
-    if (inputParser.isAskingForGreeting(text)) {
-      return commands.getGreeting(message, this.bot);
-    }
+      if (inputParser.isAskingForBronas(text)) {
+        return commands.getBronas(message, bot);
+      }
 
-    if (inputParser.isAskingForBone(text)) {
-      return commands.getBone(message, this.bot);
-    }
+      if (inputParser.isAskingForBoegivar(text)) {
+        return commands.getBoegivar(message, bot);
+      }
 
-    if (inputParser.isAskingForMartinez(text)) {
-      return commands.getMartinez(message, this.bot);
-    }
+      if (inputParser.isAskingForTourettes(text)) {
+        return commands.getTourettes(message, bot);
+      }
 
-    if (inputParser.isAskingForBronas(text)) {
-      return commands.getBronas(message, this.bot);
-    }
+      if (inputParser.isAskingForRandom(text)) {
+        return commands.getFucker(message, bot);
+      }
 
-    if (inputParser.isAskingForBoegivar(text)) {
-      return commands.getBoegivar(message, this.bot);
-    }
-
-    if (inputParser.isAskingForTourettes(text)) {
-      return commands.getTourettes(message, this.bot);
-    }
-
-    // TODO ...
-    if (inputParser.isAskingForRandom(text)) {
-      return commands.getFucker(message, this.bot);
-    }
-
-    return commands.getHelp(message, this.bot);
-  }
+      return commands.getHelp(message, bot);
+    },
+  };
 }

@@ -23,11 +23,6 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getRandomProfanity() {
-  const index = getRandomNumber(0, profanities.length - 1);
-  return profanities[index];
-}
-
 function isSupposedToTourette() {
   return getRandomNumber(1, 3) < 2;
 }
@@ -51,12 +46,15 @@ function hasNoProfanity(inputText, reply) {
   return inputTextWordCount === replyWordCount;
 }
 
-export const tourettes = {
-  sayTourettes(inputText = getRandomProfanity()) {
-    const reply = spewTourettes(inputText.split(' '));
-    if (hasNoProfanity(inputText, reply)) {
-      return `${reply} ${getRandomProfanity()}`;
-    }
-    return reply;
-  },
+export function getRandomProfanity() {
+  const index = getRandomNumber(0, profanities.length - 1);
+  return `${profanities[index].toUpperCase()}!`;
+}
+
+export function sayTourettes(inputText = getRandomProfanity()) {
+  const reply = spewTourettes(inputText.split(' '));
+  if (hasNoProfanity(inputText, reply)) {
+    return `${reply} ${getRandomProfanity()}`;
+  }
+  return reply;
 };

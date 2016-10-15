@@ -1,6 +1,7 @@
-import expect, { spyOn } from 'expect';
+import expect, { spyOn, restoreSpies } from 'expect';
 import TelegramBot from 'node-telegram-bot-api';
-import Messenger from '../messenger';
+import messengerFactory from '../messenger';
+import { commands } from '../../handlers/inputHandler';
 import config from '../../config';
 
 describe('Messenger', () => {
@@ -9,7 +10,7 @@ describe('Messenger', () => {
 
   beforeEach(() => {
     bot = new TelegramBot(config.telegram.token, { polling: true });
-    messenger = new Messenger(bot);
+    messenger = messengerFactory(bot);
   });
 
   describe('listen', () => {
@@ -30,41 +31,126 @@ describe('Messenger', () => {
       chat: { id: 'chat id' },
     };
 
+    afterEach(() => restoreSpies());
+
     describe('when asking for greeting', () => {
       const greetingText = '/start';
       const msg = Object.assign({}, message, { text: greetingText });
+      let getGreeting;
 
-      it('connects the getGreeting handler', () => {
-        // TODO ...
+      beforeEach(() => {
+        getGreeting = spyOn(commands, 'getGreeting');
+      });
+
+      it('connects the getGreeting command', () => {
+        messenger.handleText(msg);
+        expect(getGreeting).toHaveBeenCalled();
       });
     });
 
     describe('when asking for bone', () => {
-      // TODO
+      const text = '/böne';
+      const msg = Object.assign({}, message, { text });
+      let getBone;
+
+      beforeEach(() => {
+        getBone = spyOn(commands, 'getBone');
+      });
+
+      it('connects the getBone command', () => {
+        messenger.handleText(msg);
+        expect(getBone).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for martinez', () => {
-      // TODO
+      const text = '/martinez';
+      const msg = Object.assign({}, message, { text });
+      let getMartinez;
+
+      beforeEach(() => {
+        getMartinez = spyOn(commands, 'getMartinez');
+      });
+
+      it('connects the getMartinez command', () => {
+        messenger.handleText(msg);
+        expect(getMartinez).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for bronas', () => {
-      // TODO
+      const text = '/bronas';
+      const msg = Object.assign({}, message, { text });
+      let getBronas;
+
+      beforeEach(() => {
+        getBronas = spyOn(commands, 'getBronas');
+      });
+
+      it('connects the getBronas command', () => {
+        messenger.handleText(msg);
+        expect(getBronas).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for boegivar', () => {
-      // TODO
+      const text = '/boegivar';
+      const msg = Object.assign({}, message, { text });
+      let getBoegivar;
+
+      beforeEach(() => {
+        getBoegivar = spyOn(commands, 'getBoegivar');
+      });
+
+      it('connects the getBoegivar command', () => {
+        messenger.handleText(msg);
+        expect(getBoegivar).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for tourettes', () => {
-      // TODO
+      const text = '/tourettes';
+      const msg = Object.assign({}, message, { text });
+      let getTourettes;
+
+      beforeEach(() => {
+        getTourettes = spyOn(commands, 'getTourettes');
+      });
+
+      it('connects the getTourettes command', () => {
+        messenger.handleText(msg);
+        expect(getTourettes).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for random', () => {
-      // TODO
+      const text = '/Bögivar';
+      const msg = Object.assign({}, message, { text });
+      let getFucker;
+
+      beforeEach(() => {
+        getFucker = spyOn(commands, 'getFucker');
+      });
+
+      it('connects the getFucker command', () => {
+        messenger.handleText(msg);
+        expect(getFucker).toHaveBeenCalled();
+      });
     });
 
     describe('when asking for unknown', () => {
-      // TODO
+      const text = '/unknown';
+      const msg = Object.assign({}, message, { text });
+      let getHelp;
+
+      beforeEach(() => {
+        getHelp = spyOn(commands, 'getHelp');
+      });
+
+      it('connects the getHelp command', () => {
+        messenger.handleText(msg);
+        expect(getHelp).toHaveBeenCalled();
+      });
     });
   });
 });

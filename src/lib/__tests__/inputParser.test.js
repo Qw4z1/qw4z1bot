@@ -1,13 +1,7 @@
 import expect from 'expect';
-import InputParser from '../inputParser';
+import * as inputParser from '../inputParser';
 
 describe('inputParser', () => {
-  let inputParser;
-
-  beforeEach(() => {
-    inputParser = new InputParser();
-  });
-
   describe('isAskingForGreeting', () => {
     describe('when text contains /start', () => {
       const text = '/start';
