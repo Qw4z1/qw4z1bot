@@ -1,15 +1,12 @@
 import expect, { spyOn, restoreSpies } from 'expect';
-import TelegramBot from 'node-telegram-bot-api';
 import messengerFactory from '../messenger';
 import { commands } from '../../handlers/inputHandler';
-import config from '../../config';
 
 describe('Messenger', () => {
   let messenger;
-  let bot;
+  const bot = { on() {} };
 
   beforeEach(() => {
-    bot = new TelegramBot(config.telegram.token, { polling: true });
     messenger = messengerFactory(bot);
   });
 
