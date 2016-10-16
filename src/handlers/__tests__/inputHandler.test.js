@@ -1,5 +1,5 @@
 import expect, { spyOn, restoreSpies } from 'expect';
-import { commands } from '../inputHandler';
+import * as commands from '../inputHandler';
 import { bone } from '../../services/bone';
 import { bronas } from '../../services/bronas';
 import { martinez } from '../../services/martinez';

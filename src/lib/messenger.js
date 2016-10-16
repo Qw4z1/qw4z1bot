@@ -1,6 +1,15 @@
 import messageFactory from './message';
 import * as inputParser from './inputParser';
-import { commands } from '../handlers/inputHandler';
+import {
+  getGreeting,
+  getBone,
+  getMartinez,
+  getBronas,
+  getTourettes,
+  getFucker,
+  getHelp,
+  getBoegivar,
+} from '../handlers/inputHandler';
 
 export default function messenger(bot) {
   return {
@@ -14,34 +23,34 @@ export default function messenger(bot) {
       const text = message.text.toLowerCase();
 
       if (inputParser.isAskingForGreeting(text)) {
-        return commands.getGreeting(message, bot);
+        return getGreeting(message, bot);
       }
 
       if (inputParser.isAskingForBone(text)) {
-        return commands.getBone(message, bot);
+        return getBone(message, bot);
       }
 
       if (inputParser.isAskingForMartinez(text)) {
-        return commands.getMartinez(message, bot);
+        return getMartinez(message, bot);
       }
 
       if (inputParser.isAskingForBronas(text)) {
-        return commands.getBronas(message, bot);
+        return getBronas(message, bot);
       }
 
       if (inputParser.isAskingForBoegivar(text)) {
-        return commands.getBoegivar(message, bot);
+        return getBoegivar(message, bot);
       }
 
       if (inputParser.isAskingForTourettes(text)) {
-        return commands.getTourettes(message, bot);
+        return getTourettes(message, bot);
       }
 
       if (inputParser.isAskingForRandom(text)) {
-        return commands.getFucker(message, bot);
+        return getFucker(message, bot);
       }
 
-      return commands.getHelp(message, bot);
+      return getHelp(message, bot);
     },
   };
 }

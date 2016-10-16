@@ -1,6 +1,6 @@
 import expect, { spyOn, restoreSpies } from 'expect';
 import messengerFactory from '../messenger';
-import { commands } from '../../handlers/inputHandler';
+import * as commands from '../../handlers/inputHandler';
 
 describe('Messenger', () => {
   let messenger;
