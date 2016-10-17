@@ -1,3 +1,4 @@
+import TelegramBot from 'node-telegram-bot-api';
 import messengerFactory from './lib/messenger';
 import config from './config';
 
@@ -11,7 +12,7 @@ function createBot() {
           host: config.telegram.host,
         },
       }
-      );
+    );
     bot.setWebHook(`${config.telegram.externalUrl}:443/bot${config.telegram.token}`);
     return bot;
   }
