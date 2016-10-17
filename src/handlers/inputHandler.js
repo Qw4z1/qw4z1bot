@@ -40,7 +40,7 @@ export function handleTourettes(bot, chatId, text) {
   bot.sendMessage(chatId, reply);
 }
 
-export function handleUnknown(bot, chatId) {
+export function handleHelp(bot, chatId) {
   const reply = jeeves.getHelp();
   bot.sendMessage(chatId, reply);
 }

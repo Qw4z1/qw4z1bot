@@ -1,25 +1,29 @@
 export function isAskingForGreeting(text) {
-  return '/start'.includes(text);
+  return text.match(/(^|\s)\/start(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForBone(text = '') {
-  return text.match(/(^|\s)\/böne($|\s)/) !== null;
+  return text.match(/(^|\s)\/böne(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForMartinez(text = '') {
-  return text.match(/(^|\s)\/martinez($|\s)/) !== null;
+  return text.match(/(^|\s)\/martinez(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForBronas(text = '') {
-  return text.match(/(^|\s)\/bronas($|\s)/) !== null;
+  return text.match(/(^|\s)\/bronas(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForBoegivar(text = '') {
-  return text.match(/(^|\s)\/boegivar($|\s)/) !== null;
+  return text.match(/(^|\s)\/boegivar(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForTourettes(text = '') {
-  return text.match(/(^|\s)\/tourettes($|\s)/) !== null;
+  return text.match(/(^|\s)\/tourettes(@qw4z1bot|$|\s)/) !== null;
+}
+
+export function isAskingForHelp(text = '') {
+  return text.match(/(^|\s)\/help(@qw4z1bot|$|\s)/) !== null;
 }
 
 export function isAskingForRandom(text) {

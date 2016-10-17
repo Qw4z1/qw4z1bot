@@ -7,7 +7,7 @@ import {
   handleMartinez,
   handleRandom,
   handleTourettes,
-  handleUnknown,
+  handleHelp,
 } from '../inputHandler';
 import * as jeeves from '../../services/jeeves';
 import * as bone from '../../services/bone';
@@ -160,7 +160,7 @@ describe('inputHandler', () => {
     });
   });
 
-  describe('handleUnknown', () => {
+  describe('handleHelp', () => {
     const unknownReply = 'unknown reply';
 
     beforeEach(() => {
@@ -168,13 +168,13 @@ describe('inputHandler', () => {
     });
 
     it('gets reply from jeeves', () => {
-      handleUnknown(bot, chatId);
+      handleHelp(bot, chatId);
       expect(jeeves.getHelp).toHaveBeenCalled();
     });
 
     it('sends a reply', () => {
       spyOn(bot, 'sendMessage');
-      handleUnknown(bot, chatId);
+      handleHelp(bot, chatId);
       expect(bot.sendMessage).toHaveBeenCalledWith(chatId, unknownReply);
     });
   });

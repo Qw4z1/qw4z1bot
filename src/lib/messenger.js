@@ -8,7 +8,7 @@ import {
   handleMartinez,
   handleRandom,
   handleTourettes,
-  handleUnknown,
+  handleHelp,
 } from '../handlers/inputHandler';
 
 export default function messenger(bot) {
@@ -39,7 +39,7 @@ export default function messenger(bot) {
         handleRandom(bot, message.chat);
       }
 
-      handleUnknown(bot, message.chat);
+      handleHelp(bot, message.chat);
     },
   };
 }

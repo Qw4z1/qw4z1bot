@@ -135,17 +135,17 @@ describe('Messenger', () => {
       });
     });
 
-    describe('when asking for unknown', () => {
-      const unknownCommand = '/unknown';
-      const msg = Object.assign({}, message, { text: unknownCommand });
+    describe('when asking for help', () => {
+      const helpCommand = '/help';
+      const msg = Object.assign({}, message, { text: helpCommand });
 
       beforeEach(() => {
-        spyOn(inputHandler, 'handleUnknown');
+        spyOn(inputHandler, 'handleHelp');
       });
 
       it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(inputHandler.handleUnknown).toHaveBeenCalledWith(bot, chatId);
+        expect(inputHandler.handleHelp).toHaveBeenCalledWith(bot, chatId);
       });
     });
   });
