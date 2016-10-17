@@ -1,8 +1,3 @@
-export default class Martinez {
-
-  constructor() {}
-
-  sayMartinez() {
-      return "Martinez!";
-  }
-}
+export function sayMartinez() {
+    return 'Martinez!';
+};

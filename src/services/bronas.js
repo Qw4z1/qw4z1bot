@@ -1,8 +1,3 @@
-export default class Bronas {
-
-  constructor() {}
-
-  sayBronas() {
-      return "Bronas!";
-  }
-}
+export function sayBronas() {
+    return 'Bronas!';
+};
