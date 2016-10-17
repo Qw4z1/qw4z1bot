@@ -52,7 +52,21 @@ function hasNoProfanity(inputText, reply) {
   return inputTextWordCount === replyWordCount;
 }
 
-export function sayTourettes(inputText = getRandomProfanity()) {
+function getProfanities(amount) {
+  const profanityReply = [];
+  let count = 0;
+  while (count < amount) {
+    profanityReply.push(getRandomProfanity());
+    count += 1;
+  }
+  return profanityReply.join(' ');
+}
+
+export function sayTourettes(inputText = '') {
+  if (inputText === '') {
+    return getProfanities(getRandomNumber(3, 10));
+  }
+
   const reply = spewTourettes(inputText.split(' '));
   if (hasNoProfanity(inputText, reply)) {
     return `${reply} ${getRandomProfanity()}`;
