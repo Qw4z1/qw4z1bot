@@ -1,3 +1,3 @@
-export function sayBronas() {
-    return 'Bronas!';
-};
+export default function sayBronas() {
+  return 'Bronas!';
+}

@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { sayBoegivar } from '../boegivar';
+import sayBoegivar from '../boegivar';
 
 describe('boegivar', () => {
   describe('sayBoegivar', () => {

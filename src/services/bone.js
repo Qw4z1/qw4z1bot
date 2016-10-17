@@ -1,3 +1,3 @@
-export function sayBone() {
+export default function sayBone() {
   return 'Bearman!';
 }
