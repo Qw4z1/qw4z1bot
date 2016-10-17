@@ -3,23 +3,23 @@ export function isAskingForGreeting(text) {
 }
 
 export function isAskingForBone(text = '') {
-  return text.includes('/böne');
+  return text.match(/(^|\s)\/böne($|\s)/) !== null;
 }
 
 export function isAskingForMartinez(text = '') {
-  return text.includes('/martinez');
+  return text.match(/(^|\s)\/martinez($|\s)/) !== null;
 }
 
 export function isAskingForBronas(text = '') {
-  return text.includes('/bronas');
+  return text.match(/(^|\s)\/bronas($|\s)/) !== null;
 }
 
 export function isAskingForBoegivar(text = '') {
-  return text.includes('/boegivar');
+  return text.match(/(^|\s)\/boegivar($|\s)/) !== null;
 }
 
 export function isAskingForTourettes(text = '') {
-  return text.includes('/tourettes');
+  return text.match(/(^|\s)\/tourettes($|\s)/) !== null;
 }
 
 export function isAskingForRandom(text) {

@@ -18,6 +18,14 @@ describe('inputParser', () => {
         expect(inputParser.isAskingForGreeting(text)).toBe(false);
       });
     });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/startwithoutspaces';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForGreeting(text)).toBe(false);
+      });
+    });
   });
 
   describe('isAskingForBone', () => {
@@ -31,6 +39,14 @@ describe('inputParser', () => {
 
     describe('when text does not contain /böne', () => {
       const text = 'text';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForBone(text)).toBe(false);
+      });
+    });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/bönewithoutspaces';
 
       it('returns false', () => {
         expect(inputParser.isAskingForBone(text)).toBe(false);
@@ -54,6 +70,14 @@ describe('inputParser', () => {
         expect(inputParser.isAskingForMartinez(text)).toBe(false);
       });
     });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/martinezwithoutspaces';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForMartinez(text)).toBe(false);
+      });
+    });
   });
 
   describe('isAskingForBronas', () => {
@@ -67,6 +91,14 @@ describe('inputParser', () => {
 
     describe('when text does not contain /bronas', () => {
       const text = 'text';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForBronas(text)).toBe(false);
+      });
+    });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/bronaswithoutspaces';
 
       it('returns false', () => {
         expect(inputParser.isAskingForBronas(text)).toBe(false);
@@ -90,6 +122,14 @@ describe('inputParser', () => {
         expect(inputParser.isAskingForBoegivar(text)).toBe(false);
       });
     });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/boegivarwithoutspaces';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForBoegivar(text)).toBe(false);
+      });
+    });
   });
   
   describe('isAskingForTourettes', () => {
@@ -106,6 +146,14 @@ describe('inputParser', () => {
 
       it('returns false', () => {
         expect(inputParser.isAskingForTourettes(text)).toBe(false);
+      });
+    });
+
+    describe('when text does contains command without spaces', () => {
+      const text = '/touretteswithoutspaces';
+
+      it('returns false', () => {
+        expect(inputParser.isAskingForGreeting(text)).toBe(false);
       });
     });
   });
