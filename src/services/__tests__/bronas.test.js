@@ -1,10 +1,10 @@
 import expect from 'expect';
-import { bronas } from '../bronas';
+import { sayBronas } from '../bronas';
 
 describe('bronas', () => {
   describe('sayBronas', () => {
     it('replies something', () => {
-      expect(bronas.sayBronas()).toBe('Bronas!');
+      expect(sayBronas()).toBe('Bronas!');
     });
   });
 });

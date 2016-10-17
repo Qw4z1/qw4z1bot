@@ -1,5 +1,3 @@
-export const martinez = {
-  sayMartinez() {
+export function sayMartinez() {
     return 'Martinez!';
-  },
 };

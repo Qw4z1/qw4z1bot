@@ -1,5 +1,3 @@
-export const bronas = {
-  sayBronas() {
+export function sayBronas() {
     return 'Bronas!';
-  },
 };

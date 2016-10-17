@@ -1,5 +1,3 @@
-export const bone = {
-  sayBone() {
-    return 'Bearman!';
-  },
-};
+export function sayBone() {
+  return 'Bearman!';
+}

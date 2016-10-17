@@ -1,10 +1,10 @@
 import expect from 'expect';
-import { martinez } from '../martinez';
+import { sayMartinez } from '../martinez';
 
 describe('martinez', () => {
   describe('sayMartinez', () => {
     it('replies something', () => {
-      expect(martinez.sayMartinez()).toBe('Martinez!');
+      expect(sayMartinez()).toBe('Martinez!');
     });
   });
 });
