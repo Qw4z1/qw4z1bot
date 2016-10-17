@@ -159,6 +159,6 @@ describe('inputParser', () => {
   });
 
   describe('isAskingForRandom', () => {
-    // TODO Ignore for now.
+    // TODO Ignore for now...
   });
 });
