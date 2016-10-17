@@ -1,48 +1,33 @@
-export default class InputParser {
+export function isAskingForGreeting(text) {
+  return '/start'.includes(text);
+}
 
+export function isAskingForBone(text = '') {
+  return text.match(/(^|\s)\/böne($|\s)/) !== null;
+}
 
-  isAskingForGreeting(text) {
-    const pattern = '/start';
-    return text.includes(pattern)
-  }
+export function isAskingForMartinez(text = '') {
+  return text.match(/(^|\s)\/martinez($|\s)/) !== null;
+}
 
-  isAskingForBone(text) {
-    const pattern = '/böne';
-    return text.includes(pattern);
-  }
+export function isAskingForBronas(text = '') {
+  return text.match(/(^|\s)\/bronas($|\s)/) !== null;
+}
 
-  isAskingForMartinez(text) {
-    const pattern = '/martinez';
-    return text.includes(pattern);
-  }
+export function isAskingForBoegivar(text = '') {
+  return text.match(/(^|\s)\/boegivar($|\s)/) !== null;
+}
 
-  isAskingForBronas(text) {
-    const pattern = '/bronas';
-    return text.includes(pattern);
-  }
+export function isAskingForTourettes(text = '') {
+  return text.match(/(^|\s)\/tourettes($|\s)/) !== null;
+}
 
-  isAskingForBoegivar(text) {
-    const pattern = '/boegivar';
-    return text.includes(pattern);
-  }
-
-  isAskingForTourettes(text) {
-    const pattern = '/tourettes';
-    return text.includes(pattern);
-  }
-
-  isAskingForStats(text) {
-    const pattern = '/stats';
-    return text.includes(pattern);
-  }
-
-  isAskingForRandom(text) {
-    return [
-      '/Martines',
-      '/Brony',
-      '/bone',
-      '/Böner',
-      '/Bögivar'
-    ].some(i => text.includes(i));
-  }
+export function isAskingForRandom(text) {
+  return [
+    '/martines',
+    '/brony',
+    '/bone',
+    '/böner',
+    '/bögivar'
+  ].some(item => text.includes(item));
 }
