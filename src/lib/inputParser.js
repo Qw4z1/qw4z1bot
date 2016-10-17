@@ -32,6 +32,6 @@ export function isAskingForRandom(text) {
     '/brony',
     '/bone',
     '/böner',
-    '/bögivar'
+    '/bögivar',
   ].some(item => text.includes(item));
 }
