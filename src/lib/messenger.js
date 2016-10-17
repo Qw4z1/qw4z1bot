@@ -37,9 +37,9 @@ export default function messenger(bot) {
         handleTourettes(bot, message.chat, text);
       } else if (inputParser.isAskingForRandom(text)) {
         handleRandom(bot, message.chat);
+      } else if (inputParser.isAskingForHelp(text)) {
+        handleHelp(bot, message.chat);
       }
-
-      handleHelp(bot, message.chat);
     },
   };
 }
