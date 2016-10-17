@@ -1,45 +1,77 @@
-import messageFactory from './message';
-import * as inputParser from './inputParser';
-import {
-  handleBoegivar,
-  handleBone,
-  handleBronas,
-  handleGreeting,
-  handleMartinez,
-  handleRandom,
-  handleTourettes,
-  handleUnknown,
-} from '../handlers/inputHandler';
+import TelegramBot from 'node-telegram-bot-api';
+import Message from './message';
+import config from '../config';
+import InputParser from './inputParser';
+import handlers from '../handlers';
 
-export default function messenger(bot) {
-  return {
-    listen() {
-      bot.on('text', this.handleText);
-      return Promise.resolve();
-    },
+const inputParser = new InputParser();
 
-    handleText(msg) {
-      const message = messageFactory(msg);
-      const text = message.text.toLowerCase();
-      const user = message.user || {};
+export default class Messenger {
 
-      if (inputParser.isAskingForGreeting(text)) {
-        handleGreeting(bot, message.chat, user.firstName);
-      } else if (inputParser.isAskingForBone(text)) {
-        handleBone(bot, message.chat);
-      } else if (inputParser.isAskingForMartinez(text)) {
-        handleMartinez(bot, message.chat);
-      } else if (inputParser.isAskingForBronas(text)) {
-        handleBronas(bot, message.chat);
-      } else if (inputParser.isAskingForBoegivar(text)) {
-        handleBoegivar(bot, message.chat, user.firstName);
-      } else if (inputParser.isAskingForTourettes(text)) {
-        handleTourettes(bot, message.chat, text);
-      } else if (inputParser.isAskingForRandom(text)) {
-        handleRandom(bot, message.chat);
-      }
+  constructor() {
+    console.log("Tests");
+    if (process.env.NODE_ENV === 'production') {
+      this.bot = new TelegramBot(config.telegram.token, { webHook: { port: config.telegram.port, host: config.telegram.host } });
+      this.bot.setWebHook(config.telegram.externalUrl + ':443/bot' + config.telegram.token);
+    } else {
+      this.bot = new TelegramBot(config.telegram.token, { polling: true });
+    }
 
-      handleUnknown(bot, message.chat);
-    },
-  };
+  }
+
+  listen() {
+    this.bot.on('text', this.handleText.bind(this));
+    return Promise.resolve();
+  }
+
+  handleText(msg) {
+    console.log("Incoming message: " + msg.text);
+    //format the message
+    const message = new Message(Message.mapMessage(msg));
+    const text = message.text.toLowerCase();
+    console.log("Parsed message: " + message.text);
+
+    //checking if asked "/start"
+    if (inputParser.isAskingForGreeting(text)) {
+      return handlers.command.getGreeting(message, this.bot);
+    }
+    //checking if asked "/böne"
+    if (inputParser.isAskingForBone(text)) {
+      return handlers.command.getBone(message, this.bot);
+    }
+
+    //checking if asked "/martinez"
+    if (inputParser.isAskingForMartinez(text)) {
+      return handlers.command.getMartinez(message, this.bot);
+    }
+
+    //checking if asked "/bronas"
+    if (inputParser.isAskingForBronas(text)) {
+      return handlers.command.getBronas(message, this.bot);
+    }
+
+    //checking if asked "/boegivar"
+    if (inputParser.isAskingForBoegivar(text)) {
+      return handlers.command.getBoegivar(message, this.bot);
+    }
+
+    //checking if asked "/tourettes" - orly?
+    if (inputParser.isAskingForTourettes(text)) {
+      return handlers.command.getTourettes(message, this.bot);
+    }
+
+    //checking if spelled any command wrong
+    if (inputParser.isAskingForRandom(text)) {
+      console.log('Is asking for random');
+      return handlers.command.getFucker(message, this.bot);
+    }
+
+    //checking if asked for "/stats"
+    if (inputParser.isAskingForStats(text)) {
+      console.log('Is asking for /stats, ignoring');
+    }
+
+    // default - send message with help
+    return handlers.command.getHelp(message, this.bot);
+  }
 }
