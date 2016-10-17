@@ -1,19 +1,12 @@
 import expect, { spyOn, restoreSpies } from 'expect';
 import messengerFactory from '../messenger';
-import * as jeeves from '../../services/jeeves';
-import * as bone from '../../services/bone';
-import * as martinez from '../../services/martinez';
-import * as bronas from '../../services/bronas';
-import * as boegivar from '../../services/boegivar';
-import * as tourettes from '../../services/tourettes';
+import * as inputHandler from '../../handlers/inputHandler';
 
 describe('Messenger', () => {
   let messenger;
   const bot = {
-    on() {
-    },
-    sendMessage() {
-    },
+    on() {},
+    sendMessage() {},
   };
 
   beforeEach(() => {
@@ -29,7 +22,6 @@ describe('Messenger', () => {
   });
 
   describe('handleText', () => {
-    let messageSpy;
     const chatId = 'chat id';
     const userFirstName = 'user first name';
     const message = {
@@ -41,171 +33,119 @@ describe('Messenger', () => {
       chat: { id: chatId },
     };
 
-    beforeEach(() => {
-      spyOn(bot, 'sendMessage');
-    });
-
     afterEach(() => restoreSpies());
 
     describe('when asking for greeting', () => {
       const greetingCommand = '/start';
       const msg = Object.assign({}, message, { text: greetingCommand });
-      const greetingReply = 'greeting';
-      let getGreeting;
 
       beforeEach(() => {
-        spyOn(jeeves, 'getGreeting').andReturn(greetingReply);
+        spyOn(inputHandler, 'handleGreeting');
       });
 
-      it('gets a greeting from jeeves', () => {
+      it('delegates handling of greeting', () => {
         messenger.handleText(msg);
-        expect(jeeves.getGreeting).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage)
-          .toHaveBeenCalledWith(chatId, greetingReply);
+        expect(inputHandler.handleGreeting).toHaveBeenCalledWith(bot, chatId, userFirstName);
       });
     });
 
     describe('when asking for bone', () => {
       const boneCommand = '/böne';
-      const boneReply = 'bone reply';
       const msg = Object.assign({}, message, { text: boneCommand });
 
       beforeEach(() => {
-        spyOn(bone, 'sayBone').andReturn(boneReply);
+        spyOn(inputHandler, 'handleBone');
       });
 
-      it('gets the reply from bone', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(bone.sayBone).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, boneReply);
+        expect(inputHandler.handleBone).toHaveBeenCalledWith(bot, chatId);
       });
     });
 
     describe('when asking for martinez', () => {
       const martinezCommand = '/martinez';
-      const martinezReply = 'martinez reply';
       const msg = Object.assign({}, message, { text: martinezCommand });
 
       beforeEach(() => {
-        spyOn(martinez, 'sayMartinez').andReturn(martinezReply);
+        spyOn(inputHandler, 'handleMartinez');
       });
 
-      it('gets the reply from martinez', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(martinez.sayMartinez).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, martinezReply);
+        expect(inputHandler.handleMartinez).toHaveBeenCalledWith(bot, chatId);
       });
     });
 
     describe('when asking for bronas', () => {
       const bronasCommand = '/bronas';
-      const bronasReply = 'bronas reply';
       const msg = Object.assign({}, message, { text: bronasCommand });
 
       beforeEach(() => {
-        spyOn(bronas, 'sayBronas').andReturn(bronasReply);
+        spyOn(inputHandler, 'handleBronas');
       });
 
-      it('gets the reply from bronas', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(bronas.sayBronas).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, bronasReply);
+        expect(inputHandler.handleBronas).toHaveBeenCalledWith(bot, chatId);
       });
     });
 
     describe('when asking for boegivar', () => {
       const boegivarCommand = '/boegivar';
-      const boegivarReply = 'boegivar reply';
       const msg = Object.assign({}, message, { text: boegivarCommand });
 
       beforeEach(() => {
-        spyOn(boegivar, 'sayBoegivar').andReturn(boegivarReply);
+        spyOn(inputHandler, 'handleBoegivar');
       });
 
-      it('gets the reply from boegivar', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(boegivar.sayBoegivar).toHaveBeenCalledWith(userFirstName);
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, boegivarReply);
+        expect(inputHandler.handleBoegivar)
+          .toHaveBeenCalledWith(bot, chatId, userFirstName);
       });
     });
 
     describe('when asking for tourettes', () => {
       const tourettesCommand = '/tourettes';
-      const tourettesReply = 'tourettes reply';
       const msg = Object.assign({}, message, { text: tourettesCommand });
 
       beforeEach(() => {
-        spyOn(tourettes, 'sayTourettes').andReturn(tourettesReply);
+        spyOn(inputHandler, 'handleTourettes');
       });
 
-      it('gets the reply from tourettes', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(tourettes.sayTourettes).toHaveBeenCalledWith(tourettesCommand);
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, tourettesReply);
+        expect(inputHandler.handleTourettes)
+          .toHaveBeenCalledWith(bot, chatId, tourettesCommand);
       });
     });
 
     describe('when asking for random', () => {
       const randomCommand = '/Bögivar';
-      const randomReply = 'random reply';
       const msg = Object.assign({}, message, { text: randomCommand });
 
       beforeEach(() => {
-        spyOn(jeeves, 'getFucker').andReturn(randomReply);
+        spyOn(inputHandler, 'handleRandom');
       });
 
-      it('connects the getFucker command', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(jeeves.getFucker).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, randomReply);
+        expect(inputHandler.handleRandom).toHaveBeenCalledWith(bot, chatId);
       });
     });
 
     describe('when asking for unknown', () => {
       const unknownCommand = '/unknown';
-      const unknownReply = 'unknown reply';
       const msg = Object.assign({}, message, { text: unknownCommand });
 
       beforeEach(() => {
-        spyOn(jeeves, 'getHelp').andReturn(unknownReply);
+        spyOn(inputHandler, 'handleUnknown');
       });
 
-      it('connects the getHelp command', () => {
+      it('delegates handling of reply', () => {
         messenger.handleText(msg);
-        expect(jeeves.getHelp).toHaveBeenCalled();
-      });
-
-      it('sends a reply', () => {
-        messenger.handleText(msg);
-        expect(bot.sendMessage).toHaveBeenCalledWith(chatId, unknownReply);
+        expect(inputHandler.handleUnknown).toHaveBeenCalledWith(bot, chatId);
       });
     });
   });

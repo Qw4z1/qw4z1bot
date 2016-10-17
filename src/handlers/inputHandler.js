@@ -1,50 +1,46 @@
-import { bone } from '../services/bone';
-import { bronas } from '../services/bronas';
-import { martinez } from '../services/martinez';
-import { boegivar } from '../services/boegivar';
-import { sayTourettes } from '../services/tourettes';
+import * as jeeves from '../services/jeeves';
+import * as bone from '../services/bone';
+import * as martinez from '../services/martinez';
+import * as bronas from '../services/bronas';
+import * as boegivar from '../services/boegivar';
+import * as tourettes from '../services/tourettes';
 
-export function getGreeting(message, bot) {
-  const reply = `Hallåå ${message.user.firstName}! Ja' é Qw4z1Bot, men kalla mig Boegivar.`;
-  bot.sendMessage(message.chat, reply);
+export function handleBoegivar(bot, chatId, userFirstName) {
+  const reply = boegivar.sayBoegivar(userFirstName);
+  bot.sendMessage(chatId, reply);
 }
 
-export function getBone(message, bot) {
+export function handleBone(bot, chatId) {
   const reply = bone.sayBone();
-  bot.sendMessage(message.chat, reply);
+  bot.sendMessage(chatId, reply);
 }
 
-export function getBronas(message, bot) {
+export function handleBronas(bot, chatId) {
   const reply = bronas.sayBronas();
-  bot.sendMessage(message.chat, reply);
+  bot.sendMessage(chatId, reply);
 }
 
-export function getMartinez(message, bot) {
+export function handleGreeting(bot, chatId, userFirstName) {
+  const reply = jeeves.getGreeting(userFirstName);
+  bot.sendMessage(chatId, reply);
+}
+
+export function handleMartinez(bot, chatId) {
   const reply = martinez.sayMartinez();
-  bot.sendMessage(message.chat, reply);
+  bot.sendMessage(chatId, reply);
 }
 
-export function getHelp(message, bot) {
-  const reply = `Available commands:
-/böne
-/martinez
-/bronas
-/boegivar
-/tourettes
-`;
-  bot.sendMessage(message.chat, reply);
+export function handleRandom(bot, chatId) {
+  const reply = jeeves.getFucker();
+  bot.sendMessage(chatId, reply);
 }
 
-export function getBoegivar(message, bot) {
-  const reply = boegivar.sayBoegivar(message.user.firstName);
-  bot.sendMessage(message.chat, reply);
+export function handleTourettes(bot, chatId, text) {
+  const reply = tourettes.sayTourettes(text);
+  bot.sendMessage(chatId, reply);
 }
 
-export function getFucker(message, bot) {
-  bot.sendMessage(message.chat, 'Hallå där din knickedick! Tryck upp en sjöpall i stolgången din jävla dagslända!');
-}
-
-export function getTourettes(message, bot) {
-  const reply = sayTourettes(message.text);
-  bot.sendMessage(message.chat, reply);
+export function handleUnknown(bot, chatId) {
+  const reply = jeeves.getHelp();
+  bot.sendMessage(chatId, reply);
 }

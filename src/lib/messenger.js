@@ -1,11 +1,15 @@
 import messageFactory from './message';
 import * as inputParser from './inputParser';
-import * as jeeves from '../services/jeeves';
-import * as bone from '../services/bone';
-import * as martinez from '../services/martinez';
-import * as bronas from '../services/bronas';
-import * as boegivar from '../services/boegivar';
-import * as tourettes from '../services/tourettes';
+import {
+  handleBoegivar,
+  handleBone,
+  handleBronas,
+  handleGreeting,
+  handleMartinez,
+  handleRandom,
+  handleTourettes,
+  handleUnknown,
+} from '../handlers/inputHandler';
 
 export default function messenger(bot) {
   return {
@@ -17,34 +21,25 @@ export default function messenger(bot) {
     handleText(msg) {
       const message = messageFactory(msg);
       const text = message.text.toLowerCase();
+      const user = message.user || {};
 
       if (inputParser.isAskingForGreeting(text)) {
-        const user = message.user || {};
-        const reply = jeeves.getGreeting(user.firstName);
-        bot.sendMessage(message.chat, reply);
+        handleGreeting(bot, message.chat, user.firstName);
       } else if (inputParser.isAskingForBone(text)) {
-        const reply = bone.sayBone();
-        bot.sendMessage(message.chat, reply);
+        handleBone(bot, message.chat);
       } else if (inputParser.isAskingForMartinez(text)) {
-        const reply = martinez.sayMartinez();
-        bot.sendMessage(message.chat, reply);
+        handleMartinez(bot, message.chat);
       } else if (inputParser.isAskingForBronas(text)) {
-        const reply = bronas.sayBronas();
-        bot.sendMessage(message.chat, reply);
+        handleBronas(bot, message.chat);
       } else if (inputParser.isAskingForBoegivar(text)) {
-        const user = message.user || {};
-        const reply = boegivar.sayBoegivar(user.firstName);
-        bot.sendMessage(message.chat, reply);
+        handleBoegivar(bot, message.chat, user.firstName);
       } else if (inputParser.isAskingForTourettes(text)) {
-        const reply = tourettes.sayTourettes(text);
-        bot.sendMessage(message.chat, reply);
+        handleTourettes(bot, message.chat, text);
       } else if (inputParser.isAskingForRandom(text)) {
-        const reply = jeeves.getFucker();
-        bot.sendMessage(message.chat, reply);
+        handleRandom(bot, message.chat);
       }
 
-      const reply = jeeves.getHelp();
-      bot.sendMessage(message.chat, reply);
+      handleUnknown(bot, message.chat);
     },
   };
 }
