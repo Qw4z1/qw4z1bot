@@ -19,20 +19,20 @@ describe('tourettes', () => {
     describe('when input text is empty', () => {
       const inputText = '';
 
-      it('replies with an item from the profanities list', () => {
+      it('replies with at least three items from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.length).toBeGreaterThan(1);
+        expect(reply.split(' ').length).toBeGreaterThan(3);
       });
     });
 
     describe('when inputText is undefined', () => {
       const inputText = undefined;
 
-      it('replies with an item from the profanities list', () => {
+      it('replies with at least three items from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.length).toBeGreaterThan(1);
+        expect(reply.split(' ').length).toBeGreaterThan(3);
       });
     });
 
@@ -53,7 +53,7 @@ describe('tourettes', () => {
         const inputWordCount = inputText.split(' ').length;
         const reply = sayTourettes(inputText);
         const replyWordCount = reply.split(' ').length;
-        expect(replyWordCount).toBeGreaterThan(inputWordCount)
+        expect(replyWordCount).toBeGreaterThan(inputWordCount);
       });
     });
   });

@@ -181,7 +181,7 @@ describe('inputParser', () => {
       });
     });
   });
-  
+
   describe('isAskingForTourettes', () => {
     describe('when text contains /tourettes', () => {
       const text = '/tourettes';

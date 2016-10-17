@@ -16,15 +16,21 @@ const profanities = [
   'feministdemonstration',
   'mr potatomun',
   'fistelfisting',
-  'piss! piss out my ass!!'
+  'piss! piss out my ass!!',
 ];
 
 function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  const maxMinDifference = (max - min);
+  return Math.floor(Math.random() * ((maxMinDifference + 1) + min));
 }
 
 function isSupposedToTourette() {
   return getRandomNumber(1, 3) < 2;
+}
+
+export function getRandomProfanity() {
+  const index = getRandomNumber(0, profanities.length - 1);
+  return `${profanities[index].toUpperCase()}!`;
 }
 
 function maybeGetTourette(word) {
@@ -46,15 +52,24 @@ function hasNoProfanity(inputText, reply) {
   return inputTextWordCount === replyWordCount;
 }
 
-export function getRandomProfanity() {
-  const index = getRandomNumber(0, profanities.length - 1);
-  return `${profanities[index].toUpperCase()}!`;
+function getProfanities(amount) {
+  const profanityReply = [];
+  let count = 0;
+  while (count < amount) {
+    profanityReply.push(getRandomProfanity());
+    count += 1;
+  }
+  return profanityReply.join(' ');
 }
 
-export function sayTourettes(inputText = getRandomProfanity()) {
+export function sayTourettes(inputText = '') {
+  if (inputText === '') {
+    return getProfanities(getRandomNumber(3, 10));
+  }
+
   const reply = spewTourettes(inputText.split(' '));
   if (hasNoProfanity(inputText, reply)) {
     return `${reply} ${getRandomProfanity()}`;
   }
   return reply;
-};
+}
