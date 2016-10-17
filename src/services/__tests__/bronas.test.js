@@ -1,5 +1,5 @@
 import expect from 'expect';
-import sayBronas from '../bronas';
+import { sayBronas } from '../bronas';
 
 describe('bronas', () => {
   describe('sayBronas', () => {

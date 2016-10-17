@@ -1,3 +1,3 @@
-export default function sayMartinez() {
+export function sayMartinez() {
   return 'Martinez!';
 }

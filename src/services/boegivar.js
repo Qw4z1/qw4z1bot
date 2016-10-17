@@ -1,3 +1,3 @@
-export default function sayBoegivar(firstName) {
+export function sayBoegivar(firstName) {
   return `Hej ${firstName}! Är det du som är Boegivar?`;
 }
