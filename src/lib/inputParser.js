@@ -22,10 +22,6 @@ export function isAskingForTourettes(text) {
   return '/tourettes'.includes(text);
 }
 
-export function isAskingForStats(text) {
-  return '/stats'.includes(text);
-}
-
 export function isAskingForRandom(text) {
   return [
     '/martines',
