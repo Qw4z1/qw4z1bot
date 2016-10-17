@@ -53,7 +53,7 @@ describe('tourettes', () => {
         const inputWordCount = inputText.split(' ').length;
         const reply = sayTourettes(inputText);
         const replyWordCount = reply.split(' ').length;
-        expect(replyWordCount).toBeGreaterThan(inputWordCount)
+        expect(replyWordCount).toBeGreaterThan(inputWordCount);
       });
     });
   });
