@@ -63,15 +63,13 @@ function getProfanities(amount) {
 }
 
 export function sayTourettes(inputText = '') {
+  const reply = spewTourettes(inputText.split(' '));
   if (inputText === '') {
     return getProfanities(getRandomNumber(3, 10));
   }
 
-  let reply = spewTourettes(inputText.split(' '));
-  let profanityCheck = hasNoProfanity(inputText, reply);
-  while (profanityCheck) {
-    reply = spewTourettes(inputText.split(' '));
-    profanityCheck = hasNoProfanity(inputText, reply);
+  if (hasNoProfanity(inputText, reply)) {
+    return `${reply} ${getRandomProfanity()}`;
   }
   return reply;
 }
