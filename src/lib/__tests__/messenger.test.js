@@ -107,8 +107,9 @@ describe('Messenger', () => {
     });
 
     describe('when asking for tourettes', () => {
-      const tourettesCommand = '/tourettes';
-      const msg = Object.assign({}, message, { text: tourettesCommand });
+      const tourettesInputText = '/tourettes Hej';
+      const tourettesCommand = 'Hej';
+      const msg = Object.assign({}, message, { text: tourettesInputText });
 
       beforeEach(() => {
         spyOn(inputHandler, 'handleTourettes');

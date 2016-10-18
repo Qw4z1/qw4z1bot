@@ -32,7 +32,7 @@ describe('tourettes', () => {
       it('replies with at least three items from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.split(' ').length).toBeGreaterThan(3);
+        expect(reply.split(' ').length).toBeGreaterThan(2);
       });
     });
 

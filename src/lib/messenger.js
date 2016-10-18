@@ -34,7 +34,8 @@ export default function messenger(bot) {
       } else if (inputParser.isAskingForBoegivar(text)) {
         handleBoegivar(bot, message.chat, user.firstName);
       } else if (inputParser.isAskingForTourettes(text)) {
-        handleTourettes(bot, message.chat, text);
+        const commandText = text.substr(11, text.length);
+        handleTourettes(bot, message.chat, commandText);
       } else if (inputParser.isAskingForRandom(text)) {
         handleRandom(bot, message.chat);
       } else if (inputParser.isAskingForHelp(text)) {

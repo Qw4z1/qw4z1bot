@@ -1,4 +1,4 @@
-export default function message({ from, text, chat }) {
+export default function messageFactory({ from, text, chat }) {
   return {
     from: from.id,
     text,
