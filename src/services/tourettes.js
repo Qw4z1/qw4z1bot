@@ -62,10 +62,22 @@ function getProfanities(amount) {
   return profanityReply.join(' ');
 }
 
+function isInt(data) {
+  if (typeof data === 'number' && (data % 1) === 0) {
+    return true;
+  }
+  return false;
+}
+
 export function sayTourettes(inputText = '') {
   const reply = spewTourettes(inputText.split(' '));
+
   if (inputText === '') {
     return getProfanities(getRandomNumber(3, 10));
+  }
+
+  if (isInt(+inputText)) {
+    return getProfanities(+inputText);
   }
 
   if (hasNoProfanity(inputText, reply)) {
