@@ -107,9 +107,9 @@ describe('Messenger', () => {
     });
 
     describe('when asking for tourettes', () => {
-      const tourettesInputText = '/tourettes Hej';
-      const tourettesCommand = 'Hej';
-      const msg = Object.assign({}, message, { text: tourettesInputText });
+      const tourettesInputText = 'tourettes input text';
+      const tourettesCommand = `/tourettes ${tourettesInputText}`;
+      const msg = Object.assign({}, message, { text: tourettesCommand });
 
       beforeEach(() => {
         spyOn(inputHandler, 'handleTourettes');
@@ -118,7 +118,7 @@ describe('Messenger', () => {
       it('delegates handling of reply', () => {
         messenger.handleText(msg);
         expect(inputHandler.handleTourettes)
-          .toHaveBeenCalledWith(bot, chatId, tourettesCommand);
+          .toHaveBeenCalledWith(bot, chatId, tourettesInputText);
       });
     });
 

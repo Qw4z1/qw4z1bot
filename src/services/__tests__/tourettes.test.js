@@ -18,41 +18,45 @@ describe('tourettes', () => {
   describe('sayTourettes', () => {
     describe('when input text is empty', () => {
       const inputText = '';
+      const minAmountOfReplies = 3;
 
       it('replies with at least three items from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.split(' ').length).toBeGreaterThan(2);
+        expect(reply.split(' ').length).toBeGreaterThanOrEqualTo(minAmountOfReplies);
       });
     });
 
     describe('when input text is integer', () => {
-      const inputText = '25';
+      const amountOfProfanities = 25;
+      const inputText = `${amountOfProfanities}`;
 
       it('replies with a specified amount of profanities', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.split(' ').length).toBeGreaterThan(24);
+        expect(reply.split(' ').length).toBeGreaterThanOrEqualTo(amountOfProfanities);
       });
     });
 
     describe('when inputText is undefined', () => {
       const inputText = undefined;
+      const minAmountOfReplies = 3;
 
       it('replies with at least three items from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.split(' ').length).toBeGreaterThan(2);
+        expect(reply.split(' ').length).toBeGreaterThanOrEqualTo(minAmountOfReplies);
       });
     });
 
     describe('when input text is just one word', () => {
       const inputText = 'inputText';
+      const minAmountOfReplies = 1;
 
       it('replies with an item from the profanities list', () => {
         const reply = sayTourettes(inputText);
         expect(reply).toNotBe(undefined);
-        expect(reply.length).toBeGreaterThan(1);
+        expect(reply.length).toBeGreaterThanOrEqualTo(minAmountOfReplies);
       });
     });
 

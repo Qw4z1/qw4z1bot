@@ -23,6 +23,19 @@ export default function messenger(bot) {
       const text = message.text.toLowerCase();
       const user = message.user || {};
 
+      function stripText(input) {
+        let commandText = '';
+        let command = '';
+
+        if (input.indexOf(' ') !== -1 && input.startsWith('/')) {
+          command = input.split(' ')[0];
+          commandText = input.substr(command.length, input.length).trim();
+        }
+        return commandText;
+      }
+
+      const strippedText = stripText(text);
+
       if (inputParser.isAskingForGreeting(text)) {
         handleGreeting(bot, message.chat, user.firstName);
       } else if (inputParser.isAskingForBone(text)) {
@@ -34,8 +47,7 @@ export default function messenger(bot) {
       } else if (inputParser.isAskingForBoegivar(text)) {
         handleBoegivar(bot, message.chat, user.firstName);
       } else if (inputParser.isAskingForTourettes(text)) {
-        const commandText = text.substr(11, text.length);
-        handleTourettes(bot, message.chat, commandText);
+        handleTourettes(bot, message.chat, strippedText);
       } else if (inputParser.isAskingForRandom(text)) {
         handleRandom(bot, message.chat);
       } else if (inputParser.isAskingForHelp(text)) {

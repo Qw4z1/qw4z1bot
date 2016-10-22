@@ -63,21 +63,19 @@ function getProfanities(amount) {
 }
 
 function isInt(data) {
-  if (typeof data === 'number' && (data % 1) === 0) {
-    return true;
-  }
-  return false;
+  return (typeof data === 'number' && (data % 1) === 0);
 }
 
 export function sayTourettes(inputText = '') {
   const reply = spewTourettes(inputText.split(' '));
+  const numericInputText = +inputText;
 
   if (inputText === '') {
     return getProfanities(getRandomNumber(3, 10));
   }
 
-  if (isInt(+inputText)) {
-    return getProfanities(+inputText);
+  if (isInt(numericInputText)) {
+    return getProfanities(numericInputText);
   }
 
   if (hasNoProfanity(inputText, reply)) {
