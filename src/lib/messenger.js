@@ -34,7 +34,7 @@ export default function messenger(bot) {
         return commandText;
       }
 
-      const strippedText = stripText(text);
+      const strippedText = stripText(message.text);
 
       if (inputParser.isAskingForGreeting(text)) {
         handleGreeting(bot, message.chat, user.firstName);
