@@ -118,7 +118,7 @@ describe('Messenger', () => {
       it('delegates handling of reply', () => {
         messenger.handleText(msg);
         expect(inputHandler.handleTourettes)
-          .toHaveBeenCalledWith(bot, chatId, tourettesInputText);
+          .toHaveBeenCalledWith(bot, chatId, tourettesCommand);
       });
     });
 
