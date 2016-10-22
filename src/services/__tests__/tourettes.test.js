@@ -58,8 +58,9 @@ describe('tourettes', () => {
 
       it('replies with an item from the profanities list', () => {
         const reply = sayTourettes(inputText);
+        const amountOfReplies = reply.length;
         expect(reply).toNotBe(undefined);
-        expect(reply.length).toBeGreaterThanOrEqualTo(minAmountOfReplies);
+        expect(amountOfReplies).toBeGreaterThanOrEqualTo(minAmountOfReplies);
       });
     });
 
@@ -69,8 +70,8 @@ describe('tourettes', () => {
       it('randomly inserts profanities', () => {
         const inputWordCount = inputText.split(' ').length;
         const reply = sayTourettes(inputText);
-        const replyWordCount = reply.split(' ').length;
-        expect(replyWordCount).toBeGreaterThan(inputWordCount);
+        const amountOfReplies = reply.split(' ').length;
+        expect(amountOfReplies).toBeGreaterThan(inputWordCount);
       });
     });
   });
