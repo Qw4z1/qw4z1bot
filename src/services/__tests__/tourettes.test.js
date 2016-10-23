@@ -29,7 +29,7 @@ describe('tourettes', () => {
     });
 
     describe('when input text is integer', () => {
-      const amountOfProfanities = 25;
+      const amountOfProfanities = 1;
       const inputText = `${amountOfProfanities}`;
 
       it('replies with a specified amount of profanities', () => {

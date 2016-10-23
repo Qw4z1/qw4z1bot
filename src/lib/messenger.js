@@ -23,18 +23,22 @@ export default function messenger(bot) {
       const text = message.text.toLowerCase();
       const user = message.user || {};
 
-      function stripText(input) {
-        let commandText = '';
-        let command = '';
-
-        if (input.indexOf(' ') !== -1 && input.startsWith('/')) {
-          command = input.split(' ')[0];
-          commandText = input.substr(command.length, input.length).trim();
-        }
-        return commandText;
+      function hasCommand(input) {
+        return (input.indexOf(' ') !== -1 && input.startsWith('/'));
       }
 
-      const strippedText = stripText(message.text);
+      function stripCommand(input) {
+        let strippedText = '';
+        let command = '';
+
+        if (hasCommand(input)) {
+          command = input.split(' ')[0];
+          strippedText = input.substr(command.length, input.length).trim();
+        }
+        return strippedText;
+      }
+
+      const strippedText = stripCommand(message.text);
 
       if (inputParser.isAskingForGreeting(text)) {
         handleGreeting(bot, message.chat, user.firstName);
