@@ -21,7 +21,7 @@ const profanities = [
 
 function getRandomNumber(min, max) {
   const maxMinDifference = (max - min);
-  return Math.floor(Math.random() * ((maxMinDifference + 1) + min));
+  return Math.floor((Math.random() * (maxMinDifference + 1)) + min);
 }
 
 function isSupposedToTourette() {
@@ -63,11 +63,18 @@ function getProfanities(amount) {
 }
 
 export function sayTourettes(inputText = '') {
+  const numericInputText = +inputText;
+
   if (inputText === '') {
     return getProfanities(getRandomNumber(3, 10));
   }
 
   const reply = spewTourettes(inputText.split(' '));
+
+  if (Number.isInteger(numericInputText)) {
+    return getProfanities(numericInputText);
+  }
+
   if (hasNoProfanity(inputText, reply)) {
     return `${reply} ${getRandomProfanity()}`;
   }
