@@ -9,6 +9,8 @@ import {
   handleRandom,
   handleTourettes,
   handleHelp,
+  handleNewChatMember,
+  handleLeftChatMember,
 } from '../handlers/inputHandler';
 
 export default function messenger(bot) {
@@ -22,6 +24,8 @@ export default function messenger(bot) {
       const message = messageFactory(msg);
       const text = message.text.toLowerCase();
       const user = message.user || {};
+      const newChatMember = message.newChatMember;
+      const leftChatMember = message.leftChatMember;
 
       function hasCommand(input) {
         return (input.indexOf(' ') !== -1 && input.startsWith('/'));
@@ -36,6 +40,10 @@ export default function messenger(bot) {
           strippedText = input.substr(command.length, input.length).trim();
         }
         return strippedText;
+      }
+
+      function isDefined(variable) {
+        return (typeof variable !== 'undefined' || variable !== null);
       }
 
       const strippedText = stripCommand(message.text);
@@ -56,6 +64,10 @@ export default function messenger(bot) {
         handleRandom(bot, message.chat);
       } else if (inputParser.isAskingForHelp(text)) {
         handleHelp(bot, message.chat);
+      } else if (isDefined(newChatMember)) {
+        handleNewChatMember(bot, message.chat, newChatMember);
+      } else if (isDefined(leftChatMember)) {
+        handleLeftChatMember(bot, message.chat, leftChatMember);
       }
     },
   };
